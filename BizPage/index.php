@@ -67,9 +67,10 @@
           if (isset($_SESSION['FullName'])) : ?>
           <li><a href="products.php" ><?php echo $_SESSION['FullName']; ?></a></li>
           <li><a href="logout.php" >Sign out</a></li>
+          <li><a href="" data-toggle="modal" data-target="#exampleCardModal">Card</a></li>
         <?php
         endif ?>
-        <li><a href="" data-toggle="modal" data-target="#exampleCardModal">Card</a></li>
+
         <?php if(!isset($_SESSION['FullName'])) :?>
           <li><a href="" data-toggle="modal" data-target="#SignUpModal">Sign up</a></li>
           <li><a href="" data-toggle="modal" data-target="#SignInModal">Sign in</a></li>
@@ -383,7 +384,24 @@
           </button>
         </div>
         <div class="modal-body">
-          Card will be improved!!!!!
+          <?php
+               $user = $_SESSION['FullName'];
+               $query ="SELECT * FROM `card` INNER JOIN `products` on card.ProductId=products.Id and card.UserName = '$user'";
+               $run_query = mysqli_query($conn,$query);
+               if(!$run_query)
+               {
+                 die(mysqli_error($conn));
+               }
+             ?>
+            <?php
+            while($row = mysqli_fetch_assoc($run_query))
+            {
+            ?>
+            <li>  <a href="detail.php?detail=<?php echo $row['Id']; ?>"><?php echo $row['Name']; ?></a></li>
+            <li>  <a href="detail.php?detail=<?php echo $Id?>"><image style="width:50px; height:50px;" src="<?php echo $row['ImagePath']; ?>"></a></li>
+            <?php
+            }
+            ?>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

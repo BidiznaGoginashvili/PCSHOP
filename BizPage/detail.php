@@ -65,9 +65,10 @@
             if (isset($_SESSION['FullName'])) : ?>
             <li><a href="Admin/products.php" ><?php echo $_SESSION['FullName']; ?></a></li>
             <li><a href="logout.php" >Sign out</a></li>
+            <li><a href="" data-toggle="modal" data-target="#exampleCardModal">Card</a></li>
           <?php
           endif ?>
-          <li><a href="" data-toggle="modal" data-target="#exampleCardModal">Card</a></li>
+
           <?php if(!isset($_SESSION['FullName'])) :?>
             <li><a href="" data-toggle="modal" data-target="#SignInModal">Sign up</a></li>
             <li><a href="" data-toggle="modal" data-target="#SignUpModal">Sign in</a></li>
@@ -105,13 +106,14 @@ while ($row = mysqli_fetch_assoc($select_query)) {
                           <?php  if (isset($_SESSION['FullName'])) : ?>
                           <form action="seedcard.php" method="post">
                             <input type="hidden" name="productid" value="<?php echo $Id; ?>">
+                            <input type="hidden" name="UserName" value="<?php echo $_SESSION['FullName'] ?>">
                             <button  type="submit" class="btn btn-danger" name="btnAddCard" style="float:left;border-radius: 0!important;color:white;height:60px;">Add to Cart</a>
                           </form>
                           <?php
                           if (isset($_POST["btnAddCard"])) {
                             $ProductId = $Id;
-                            $Quantity = $_POST  ["Quantity"];
-                            $query = "INSERT INTO `card`( `ProductId`, `Quantity`) VALUES ('$ProductId','$Quantity')";
+                            $UserName= $_SESSION['FullName'];
+                            $query = "INSERT INTO `card`( `ProductId`, `UserName`) VALUES ('$ProductId','$UserName')";
                             $run_query = mysqli_query($conn,$query);
                               header("Location: detail.php?detail=$Id");
                           }
@@ -144,7 +146,24 @@ while ($row = mysqli_fetch_assoc($select_query)) {
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <?php
+             $user = $_SESSION['FullName'];
+             $query ="SELECT * FROM `card` INNER JOIN `products` on card.ProductId=products.Id and card.UserName = '$user'";
+             $run_query = mysqli_query($conn,$query);
+             if(!$run_query)
+             {
+               die(mysqli_error($conn));
+             }
+           ?>
+          <?php
+          while($row = mysqli_fetch_assoc($run_query))
+          {
+          ?>
+          <li>  <a href="detail.php?detail=<?php echo $row['Id']; ?>"><?php echo $row['Name']; ?></a></li>
+          <li>  <a href="detail.php?detail=<?php echo $Id?>"><image style="width:50px; height:50px;" src="<?php echo $row['ImagePath']; ?>"></a></li>
+          <?php
+          }
+          ?>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

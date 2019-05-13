@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2019 at 10:15 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Generation Time: May 13, 2019 at 03:01 PM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,20 +30,24 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `card` (
   `Id` int(11) NOT NULL,
-  `ProductId` int(11) NOT NULL
+  `ProductId` int(11) NOT NULL,
+  `UserName` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `card`
 --
 
-INSERT INTO `card` (`Id`, `ProductId`) VALUES
-(14, 16),
-(15, 16),
-(16, 16),
-(17, 13),
-(18, 13),
-(19, 13);
+INSERT INTO `card` (`Id`, `ProductId`, `UserName`) VALUES
+(1, 6, ''),
+(2, 6, ''),
+(3, 6, ''),
+(4, 6, ''),
+(5, 6, ''),
+(6, 6, 'bidzinagoginashvili'),
+(7, 13, 'bidzinagoginashvili'),
+(8, 13, 'bidzinagoginashvili'),
+(9, 13, 'bidzinagoginashvili');
 
 -- --------------------------------------------------------
 
@@ -100,7 +104,8 @@ INSERT INTO `products` (`Id`, `Name`, `CategoryId`, `ImagePath`, `Price`, `Full 
 (16, 'Rockville HTS56 1000w 5.1', 9, 'https://images-na.ssl-images-amazon.com/images/I/61k3EzwbRQL._SL1500_.jpg', '45', ' 50mm speaker diameter, high precision 50mm magnetic neodymium driver, bring you vivid sound field, sound clarity, sound shock feeling, capable of various games.\r\nSuper soft over-ear pads, earmuffs used with skin-friendly leather material, that is more comfortable for Long time wear. '),
 (17, 'Curved UHD', 3, 'https://images.samsung.com/is/image/samsung/uk-uhd-mu6500-ue65mu6500uxxu-silver-63713889?$PD_GALLERY_L_JPG$', '3400', ' Dynamic Crystal Color: Millions of shades of color reveal a vibrant, lifelike picture that HDTV can’t create\r\n4K UHD Processor: A powerful processor optimizes your TV’s performance with 4K picture quality '),
 (19, 'Puppy Jenx', 10, 'https://images-na.ssl-images-amazon.com/images/I/61dWNtal-UL._SX522_.jpg', '123', 'Robot Interactive Puppy Jenx Voice Recognition Intelligent Electronic Toy Dog The Puppy is Going to be in a New World.The Puppy can Voice Recognize 15 Instructions\"Hello\", \"Follow Me\", \"Sing a Song\", \"Dancing\", \"Forward\", \"Backward\", \"Turn Left\", \"Turn Right\",\"To Turn Around\", \"Follow Me\", \"Protect Me\", \"I Love You\", \"Kiss Me\", \"You are so Beautiful\", \"Tell Jokes\",\"Go To Sleep\". '),
-(20, 'The RockVille HTS56', 9, 'https://images-na.ssl-images-amazon.com/images/I/51UxmFzaAgL.01_SL500_.jpg', '12', 'The Rockville HTS56 5.1 Channel Home Theater System is the solution to your surround sound needs. The system is capable of 1000 watts peak power and 500 watts program');
+(20, 'The RockVille HTS56', 9, 'https://images-na.ssl-images-amazon.com/images/I/51UxmFzaAgL.01_SL500_.jpg', '12', 'The Rockville HTS56 5.1 Channel Home Theater System is the solution to your surround sound needs. The system is capable of 1000 watts peak power and 500 watts program'),
+(21, ' Galaxy S8 Screen Protector', 9, 'https://images-na.ssl-images-amazon.com/images/I/61L9ILNo6OL._SL1000_.jpg', '12', 'The IQ Shield Galaxy S8 Screen Protector includes our proprietary screen protector, installation tray or spray solution, squeegee, lint-free cloth, and intuitive installation instructions');
 
 -- --------------------------------------------------------
 
@@ -162,7 +167,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `card`
 --
 ALTER TABLE `card`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -174,7 +179,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `users`
